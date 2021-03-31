@@ -36,8 +36,9 @@ impl Cell {
         self.assign_color_values();
     }
 
+    ///Each color will separate the cells in case of multiple colonies
     pub fn assign_color_values(&mut self) {
-        self.color_values = Color.map_color(&self.color)
+        self.color_values = map_color(& self.color)
     }
 
     ///Alpha values help determine age of the cell
