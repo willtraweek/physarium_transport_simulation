@@ -1,5 +1,6 @@
 use crate::cell::{Cell, Color};
-use opengl_graphics::GlGraphics;
+
+use opengl_graphics::{GlGraphics, OpenGL};
 use piston::input::RenderArgs;
 
 ///The environment that the cells live in.  Each cell is 1 pixel.  Width and Height are in pixels/cells
@@ -12,22 +13,27 @@ pub struct Dish{
 
 impl Dish {
     pub fn new(width: u64, height: u64) -> Dish {
-        Dish {
+        let dish = Dish {
             cells: vec![vec![Cell::new(); width as usize]; height as usize],
             width,
-            height
-        }
+            height,
+            gl: GlGraphics::new(OpenGL::V3_2) // Change to OpenGL::V2_1 if not working
+        };
+
+        dish
     }
 
     pub fn render(&mut self, &args: &RenderArgs) {
         use graphics::*;
 
         self.gl.draw(args.viewport(), |c, gl | {
-            clear(Color::Black, gl);
+            clear(Color.map_color(Color::Black), gl);
 
-            for x in 0..width {
-                for y in 0..height {
-
+            for x in 0..self.width {
+                for y in 0..self.height {
+                    let rect = rectangle::square(x as f64, y as f64, 1.0);
+                    let mut cell = &self.cells[x][y];
+                    rectangle(cell.get_color_values(), rect, c.transform, gl)
                 }
             }
         });
