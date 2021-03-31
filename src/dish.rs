@@ -25,15 +25,18 @@ impl Dish {
 
     pub fn render(&mut self, &args: &RenderArgs) {
         use graphics::*;
+        let width = self.width;
+        let height = self.height;
+        let mut cells = self.cells.clone();
 
         self.gl.draw(args.viewport(), |c, gl | {
-            clear(Color.map_color(Color::Black), gl);
+            clear(crate::cell::map_color(&Color::Black), gl);
 
-            for x in 0..self.width {
-                for y in 0..self.height {
+            for x in 0..width {
+                for y in 0..height {
                     let rect = rectangle::square(x as f64, y as f64, 1.0);
-                    let mut cell = &self.cells[x][y];
-                    rectangle(cell.get_color_values(), rect, c.transform, gl)
+                    let color = cells[x as usize][y as usize].get_color_values();
+                    rectangle(color, rect, c.transform, gl);
                 }
             }
         });
