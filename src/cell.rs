@@ -6,15 +6,13 @@ pub enum Color {
     Black
 }
 
-impl Color {
-    fn map_color(color: Color) -> [f32; 4] {
-        match color {
-            Color::Black => [0.0, 0.0, 0.0, 0.0],
-            Color::White => [1.0, 1.0, 1.0, 1.0],
-            Color::Red => [1.0, 0.0, 0.0, 1.0],
-            Color::Green => [0.0, 1.0, 0.0, 1.0],
-            Color::Blue => [0.0, 0.0, 1.0, 1.0]
-        }
+pub fn map_color(color: & Color) -> [f32; 4] {
+    match color {
+        Color::Black => [0.0, 0.0, 0.0, 0.0],
+        Color::White => [1.0, 1.0, 1.0, 1.0],
+        Color::Red => [1.0, 0.0, 0.0, 1.0],
+        Color::Green => [0.0, 1.0, 0.0, 1.0],
+        Color::Blue => [0.0, 0.0, 1.0, 1.0]
     }
 }
 
