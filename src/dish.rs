@@ -41,4 +41,12 @@ impl Dish {
             }
         });
     }
+
+    pub fn update(&mut self, &args: &UpdateArgs) {
+        for temp in &mut self.cells {
+            for mut cell in temp {
+                cell.assign_color(Color::Red);
+            }
+        }
+    }
 }
