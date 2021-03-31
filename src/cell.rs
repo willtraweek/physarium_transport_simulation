@@ -1,3 +1,4 @@
+#[derive(Clone)]
 pub enum Color {
     Red,
     Green,
@@ -16,6 +17,7 @@ pub fn map_color(color: & Color) -> [f32; 4] {
     }
 }
 
+#[derive(Clone)]
 pub struct Cell {
     color: Color,
     color_values: [f32;4]
