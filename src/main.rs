@@ -35,10 +35,15 @@ fn main() {
     let mut events = Events::new(EventSettings::new());
     events.set_ups(MAX_FPS + 1);
     events.set_max_fps(MAX_FPS + 1);
+
+    let mut start = time::Instant::now();
     while let Some(e) = events.next(&mut window) {
         if let Some(args) = e.render_args() {
             dish.render(&args);
+            let stop = time::Instant::now();
+            println!("full render: {} ms", (stop-start).as_millis())
         }
+        start = time::Instant::now();
 
         if let Some(args) = e.update_args() {
             dish.update(&args);

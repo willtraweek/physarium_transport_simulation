@@ -4,6 +4,8 @@ use rand::prelude::*;
 use opengl_graphics::{GlGraphics, OpenGL};
 use piston::input::{RenderArgs, UpdateArgs};
 
+use std::time;
+
 ///The environment that the cells live in.  Each cell is 1 pixel.  Width and Height are in pixels/cells
 pub struct Dish{
     cells: Vec<Vec<Cell>>,
@@ -28,7 +30,9 @@ impl Dish {
         use graphics::*;
         let width = self.width;
         let height = self.height;
+        let start_clone = time::Instant::now();
         let mut cells = self.cells.clone();
+        println!("clone_time {} ms", (time::Instant::now() - start_clone).as_millis());
 
         self.gl.draw(args.viewport(), |c, gl | {
             clear(crate::cell::map_color(&Color::Black), gl);
@@ -45,9 +49,10 @@ impl Dish {
 
     pub fn update(&mut self, &args: &UpdateArgs) {
         for temp in &mut self.cells {
-            for mut cell in temp {
+        let update_start = time::Instant::now();
                 cell.assign_color(Color::Red);
             }
         }
+        println!("update_time {} ms", (time::Instant::now() - update_start).as_millis());
     }
 }
