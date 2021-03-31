@@ -6,13 +6,13 @@ use piston::input::RenderArgs;
 ///The environment that the cells live in.  Each cell is 1 pixel.  Width and Height are in pixels/cells
 pub struct Dish{
     cells: Vec<Vec<Cell>>,
-    width: u64,
-    height: u64,
+    width: u32,
+    height: u32,
     gl: GlGraphics
 }
 
 impl Dish {
-    pub fn new(width: u64, height: u64) -> Dish {
+    pub fn new(width: u32, height: u32, opengl: OpenGL) -> Dish {
         let dish = Dish {
             cells: vec![vec![Cell::new(); width as usize]; height as usize],
             width,
