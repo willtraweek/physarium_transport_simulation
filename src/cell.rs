@@ -7,7 +7,7 @@ pub enum Color {
 }
 
 impl Color {
-    fn map_color(&color: Color) -> [f64; 4] {
+    fn map_color(color: Color) -> [f32; 4] {
         match color {
             Color::Black => [0.0, 0.0, 0.0, 0.0],
             Color::White => [1.0, 1.0, 1.0, 1.0],
@@ -20,7 +20,7 @@ impl Color {
 
 pub struct Cell {
     color: Color,
-    color_values: [f64;4]
+    color_values: [f32;4]
 }
 
 ///The basic building block of the organism
@@ -39,12 +39,12 @@ impl Cell {
     }
 
     ///Alpha values help determine age of the cell
-    pub fn get_alpha_value(&self) -> f64 {
+    pub fn get_alpha_value(&self) -> f32 {
         self.color_values[3]
     }
 
     ///This allows us to age cells
-    pub fn set_alpha_value(&mut self, alpha_value: f64) {
+    pub fn set_alpha_value(&mut self, alpha_value: f32) {
         self.color_values[3] = alpha_value
     }
 }
