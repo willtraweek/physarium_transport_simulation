@@ -41,6 +41,10 @@ impl Cell {
         self.color_values = map_color(& self.color)
     }
 
+    pub fn get_color_values(&mut self) -> [f32;4] {
+        self.color_values
+    }
+
     ///Alpha values help determine age of the cell
     pub fn get_alpha_value(&self) -> f32 {
         self.color_values[3]
