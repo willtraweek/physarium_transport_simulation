@@ -1,7 +1,8 @@
 use crate::cell::{Cell, Color};
+use rand::prelude::*;
 
 use opengl_graphics::{GlGraphics, OpenGL};
-use piston::input::RenderArgs;
+use piston::input::{RenderArgs, UpdateArgs};
 
 ///The environment that the cells live in.  Each cell is 1 pixel.  Width and Height are in pixels/cells
 pub struct Dish{
