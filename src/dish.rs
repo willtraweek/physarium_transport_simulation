@@ -1,5 +1,5 @@
 use crate::cell::{Cell, Color};
-use rand::prelude::*;
+use rand::{thread_rng, Rng};
 
 use opengl_graphics::{GlGraphics, OpenGL};
 use piston::input::{RenderArgs, UpdateArgs};
@@ -48,9 +48,18 @@ impl Dish {
     }
 
     pub fn update(&mut self, &args: &UpdateArgs) {
-        for temp in &mut self.cells {
+        let mut rng = thread_rng();
         let update_start = time::Instant::now();
-                cell.assign_color(Color::Red);
+        for temp in self.cells.iter_mut() {
+            for mut cell in temp.iter_mut() {
+                match rng.gen_range(0..5) {
+                    0 => cell.assign_color(Color::Black),
+                    1 => cell.assign_color(Color::White),
+                    2 => cell.assign_color(Color::Red),
+                    3 => cell.assign_color(Color::Green),
+                    4 => cell.assign_color(Color::Blue),
+                    _ => cell.assign_color(Color::Black)
+                }
             }
         }
         println!("update_time {} ms", (time::Instant::now() - update_start).as_millis());
