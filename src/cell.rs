@@ -6,6 +6,18 @@ pub enum Color {
     Black
 }
 
+impl Color {
+    fn map_color(&color: Color) -> [f64; 4] {
+        match color {
+            Color::Red => [1.0, 0.0, 0.0, 1.0],
+            Color::Green => [0.0, 1.0, 0.0, 1.0],
+            Color::Blue => [0.0, 0.0, 1.0, 1.0],
+            Color::White => [1.0, 1.0, 1.0, 1.0],
+            Color::Black => [0.0, 0.0, 0.0, 0.0]
+        }
+    }
+}
+
 pub struct Cell {
     color: Color,
     color_values: [f64;4]
@@ -23,13 +35,7 @@ impl Cell {
 
     ///Each color will seperate the cells in case of multiple colonies
     pub fn assign_color_values(&mut self) {
-        self.color_values = match self.color {
-            Color::Red => [1.0, 0.0, 0.0, 1.0],
-            Color::Green => [0.0, 1.0, 0.0, 1.0],
-            Color::Blue => [0.0, 0.0, 1.0, 1.0],
-            Color::White => [1.0, 1.0, 1.0, 1.0],
-            Color::Black => [0.0, 0.0, 0.0, 0.0]
-        }
+        self.color_values = Color.map_color(&self.color)
     }
 
     ///Alpha values help determine age of the cell
