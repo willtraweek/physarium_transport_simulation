@@ -17,7 +17,7 @@ impl Dish {
             cells: vec![vec![Cell::new(); width as usize]; height as usize],
             width,
             height,
-            gl: GlGraphics::new(OpenGL::V3_2) // Change to OpenGL::V2_1 if not working
+            gl: GlGraphics::new(opengl)
         };
 
         dish
