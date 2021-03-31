@@ -31,7 +31,11 @@ impl Cell {
         }
     }
 
-    ///Each color will seperate the cells in case of multiple colonies
+    pub fn assign_color(&mut self, color: Color) {
+        self.color = color;
+        self.assign_color_values();
+    }
+
     pub fn assign_color_values(&mut self) {
         self.color_values = Color.map_color(&self.color)
     }
