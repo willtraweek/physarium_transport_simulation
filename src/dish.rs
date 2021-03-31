@@ -14,7 +14,7 @@ pub struct Dish{
 impl Dish {
     pub fn new(width: u32, height: u32, opengl: OpenGL) -> Dish {
         let dish = Dish {
-            cells: vec![vec![Cell::new(); width as usize]; height as usize],
+            cells: vec![vec![Cell::new(); height as usize]; width as usize],
             width,
             height,
             gl: GlGraphics::new(opengl)
