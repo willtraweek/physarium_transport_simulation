@@ -3,6 +3,8 @@ extern crate graphics;
 extern crate opengl_graphics;
 extern crate piston;
 
+use std::time;
+
 mod dish;
 mod cell;
 
@@ -13,9 +15,9 @@ use piston::input::{RenderArgs, RenderEvent, UpdateArgs, UpdateEvent};
 use piston::window::WindowSettings;
 use piston::EventLoop;
 
-const MAX_FPS: u64 = 5;
-const WINDOW_WIDTH: u32 = 200;
-const WINDOW_HEIGHT: u32 = 400;
+const MAX_FPS: u64 = 60;
+const WINDOW_WIDTH: u32 = 1000;
+const WINDOW_HEIGHT: u32 = WINDOW_WIDTH;
 const BOX_SIZE: f64 = WINDOW_HEIGHT as f64 / 2.0;
 
 
