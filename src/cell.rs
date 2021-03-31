@@ -6,13 +6,21 @@ pub enum Color {
     Black
 }
 
-struct Cell {
+pub struct Cell {
     color: Color,
     color_values: [f64;4]
 }
 
 ///The basic building block of the organism
 impl Cell {
+    ///Inits a new cell to black.  This helps when creating the first screen
+    pub fn new() -> Cell {
+        Cell {
+            color: Color::Black,
+            color_values: [0.0, 0.0, 0.0, 0.0]
+        }
+    }
+
     ///Each color will seperate the cells in case of multiple colonies
     pub fn assign_color_values(&mut self) {
         self.color_values = match self.color {
